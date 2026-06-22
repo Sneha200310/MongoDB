@@ -1,0 +1,460 @@
+use emp
+switched to db emp
+db.createcollection('employee')
+TypeError: db.createcollection is not a function
+db.createCollection('employee')
+{ ok: 1 }
+db.employee.insertOne({'emp_id':1,emp_name:'ad',emp_designation:'ds'})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6a38b02daa06a5ff74eae67e')
+}
+db.employee.insertOne({'dob':25,emp_age:'28',emp_exp:'5',emp_salary:5000})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6a38b1c5aa06a5ff74eae67f')
+}
+db.employee.find()
+{
+  _id: ObjectId('6a38b02daa06a5ff74eae67e'),
+  emp_id: 1,
+  emp_name: 'ad',
+  emp_designation: 'ds'
+}
+{
+  _id: ObjectId('6a38b1c5aa06a5ff74eae67f'),
+  dob: 25,
+  emp_age: '28',
+  emp_exp: '5',
+  emp_salary: 5000
+}
+db.employee.insertMany([{'name':'ak','age':18},{'sub':'ds','hobby':'music'},{'exp':2,'salary':9000}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6a38b366aa06a5ff74eae680'),
+    '1': ObjectId('6a38b366aa06a5ff74eae681'),
+    '2': ObjectId('6a38b366aa06a5ff74eae682')
+  }
+}
+db.employee.find()
+{
+  _id: ObjectId('6a38b02daa06a5ff74eae67e'),
+  emp_id: 1,
+  emp_name: 'ad',
+  emp_designation: 'ds'
+}
+{
+  _id: ObjectId('6a38b1c5aa06a5ff74eae67f'),
+  dob: 25,
+  emp_age: '28',
+  emp_exp: '5',
+  emp_salary: 5000
+}
+{
+  _id: ObjectId('6a38b366aa06a5ff74eae680'),
+  name: 'ak',
+  age: 18
+}
+{
+  _id: ObjectId('6a38b366aa06a5ff74eae681'),
+  sub: 'ds',
+  hobby: 'music'
+}
+{
+  _id: ObjectId('6a38b366aa06a5ff74eae682'),
+  exp: 2,
+  salary: 9000
+}
+db.employee.insertMany([{'skill':'typing','score':18},{'salary':'3000','dept':'ai'},{'manager':'md','bonus':9000}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6a38b543aa06a5ff74eae683'),
+    '1': ObjectId('6a38b543aa06a5ff74eae684'),
+    '2': ObjectId('6a38b543aa06a5ff74eae685')
+  }
+}
+db.employee.find()
+{
+  _id: ObjectId('6a38b02daa06a5ff74eae67e'),
+  emp_id: 1,
+  emp_name: 'ad',
+  emp_designation: 'ds'
+}
+{
+  _id: ObjectId('6a38b1c5aa06a5ff74eae67f'),
+  dob: 25,
+  emp_age: '28',
+  emp_exp: '5',
+  emp_salary: 5000
+}
+{
+  _id: ObjectId('6a38b366aa06a5ff74eae680'),
+  name: 'ak',
+  age: 18
+}
+{
+  _id: ObjectId('6a38b366aa06a5ff74eae681'),
+  sub: 'ds',
+  hobby: 'music'
+}
+{
+  _id: ObjectId('6a38b366aa06a5ff74eae682'),
+  exp: 2,
+  salary: 9000
+}
+{
+  _id: ObjectId('6a38b543aa06a5ff74eae683'),
+  skill: 'typing',
+  score: 18
+}
+{
+  _id: ObjectId('6a38b543aa06a5ff74eae684'),
+  salary: '3000',
+  dept: 'ai'
+}
+{
+  _id: ObjectId('6a38b543aa06a5ff74eae685'),
+  manager: 'md',
+  bonus: 9000
+}
+db.employee.updateOne({'name':'ad'},{&set:{'name':'md'}})
+SyntaxError: Unexpected token (1:37)
+
+> 1 | db.employee.updateOne({'name':'ad'},{&set:{'name':'md'}})
+    |                                      ^
+db.employee.updateOne({'name':'ad'},{$set:{'name':'md'}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+db.employee.find()
+{
+  _id: ObjectId('6a38b02daa06a5ff74eae67e'),
+  emp_id: 1,
+  emp_name: 'ad',
+  emp_designation: 'ds'
+}
+{
+  _id: ObjectId('6a38b1c5aa06a5ff74eae67f'),
+  dob: 25,
+  emp_age: '28',
+  emp_exp: '5',
+  emp_salary: 5000
+}
+{
+  _id: ObjectId('6a38b366aa06a5ff74eae680'),
+  name: 'ak',
+  age: 18
+}
+{
+  _id: ObjectId('6a38b366aa06a5ff74eae681'),
+  sub: 'ds',
+  hobby: 'music'
+}
+{
+  _id: ObjectId('6a38b366aa06a5ff74eae682'),
+  exp: 2,
+  salary: 9000
+}
+{
+  _id: ObjectId('6a38b543aa06a5ff74eae683'),
+  skill: 'typing',
+  score: 18
+}
+{
+  _id: ObjectId('6a38b543aa06a5ff74eae684'),
+  salary: '3000',
+  dept: 'ai'
+}
+{
+  _id: ObjectId('6a38b543aa06a5ff74eae685'),
+  manager: 'md',
+  bonus: 9000
+}
+db.employee.updateOne({'salary':'9000'},{&set:{'salary':'3000'}})
+SyntaxError: Unexpected token (1:41)
+
+> 1 | db.employee.updateOne({'salary':'9000'},{&set:{'salary':'3000'}})
+    |                                          ^
+db.employee.updateOne({'salary':9000},{&set:{'salary':3000}})
+SyntaxError: Unexpected token (1:39)
+
+> 1 | db.employee.updateOne({'salary':9000},{&set:{'salary':3000}})
+    |                                        ^
+db.employee.updateOne({'salary':9000},{$set:{'salary':3000}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.employee.find()
+{
+  _id: ObjectId('6a38b02daa06a5ff74eae67e'),
+  emp_id: 1,
+  emp_name: 'ad',
+  emp_designation: 'ds'
+}
+{
+  _id: ObjectId('6a38b1c5aa06a5ff74eae67f'),
+  dob: 25,
+  emp_age: '28',
+  emp_exp: '5',
+  emp_salary: 5000
+}
+{
+  _id: ObjectId('6a38b366aa06a5ff74eae680'),
+  name: 'ak',
+  age: 18
+}
+{
+  _id: ObjectId('6a38b366aa06a5ff74eae681'),
+  sub: 'ds',
+  hobby: 'music'
+}
+{
+  _id: ObjectId('6a38b366aa06a5ff74eae682'),
+  exp: 2,
+  salary: 3000
+}
+{
+  _id: ObjectId('6a38b543aa06a5ff74eae683'),
+  skill: 'typing',
+  score: 18
+}
+{
+  _id: ObjectId('6a38b543aa06a5ff74eae684'),
+  salary: '3000',
+  dept: 'ai'
+}
+{
+  _id: ObjectId('6a38b543aa06a5ff74eae685'),
+  manager: 'md',
+  bonus: 9000
+}
+db.employee.updateMany({'salary':3000},{'salary'})
+SyntaxError: Unexpected token (1:48)
+
+> 1 | db.employee.updateMany({'salary':3000},{'salary'})
+    |                                                 ^
+ 
+db.employee.updateMany({'salary':3000},{$set:{'salary':5000}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.employee.find()
+{
+  _id: ObjectId('6a38b02daa06a5ff74eae67e'),
+  emp_id: 1,
+  emp_name: 'ad',
+  emp_designation: 'ds'
+}
+{
+  _id: ObjectId('6a38b1c5aa06a5ff74eae67f'),
+  dob: 25,
+  emp_age: '28',
+  emp_exp: '5',
+  emp_salary: 5000
+}
+{
+  _id: ObjectId('6a38b366aa06a5ff74eae680'),
+  name: 'ak',
+  age: 18
+}
+{
+  _id: ObjectId('6a38b366aa06a5ff74eae681'),
+  sub: 'ds',
+  hobby: 'music'
+}
+{
+  _id: ObjectId('6a38b366aa06a5ff74eae682'),
+  exp: 2,
+  salary: 5000
+}
+{
+  _id: ObjectId('6a38b543aa06a5ff74eae683'),
+  skill: 'typing',
+  score: 18
+}
+{
+  _id: ObjectId('6a38b543aa06a5ff74eae684'),
+  salary: '3000',
+  dept: 'ai'
+}
+{
+  _id: ObjectId('6a38b543aa06a5ff74eae685'),
+  manager: 'md',
+  bonus: 9000
+}
+db.employee.deleteOne({'manager':'md'})
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+db.employee.find()
+{
+  _id: ObjectId('6a38b02daa06a5ff74eae67e'),
+  emp_id: 1,
+  emp_name: 'ad',
+  emp_designation: 'ds'
+}
+{
+  _id: ObjectId('6a38b1c5aa06a5ff74eae67f'),
+  dob: 25,
+  emp_age: '28',
+  emp_exp: '5',
+  emp_salary: 5000
+}
+{
+  _id: ObjectId('6a38b366aa06a5ff74eae680'),
+  name: 'ak',
+  age: 18
+}
+{
+  _id: ObjectId('6a38b366aa06a5ff74eae681'),
+  sub: 'ds',
+  hobby: 'music'
+}
+{
+  _id: ObjectId('6a38b366aa06a5ff74eae682'),
+  exp: 2,
+  salary: 5000
+}
+{
+  _id: ObjectId('6a38b543aa06a5ff74eae683'),
+  skill: 'typing',
+  score: 18
+}
+{
+  _id: ObjectId('6a38b543aa06a5ff74eae684'),
+  salary: '3000',
+  dept: 'ai'
+}
+db.employee.deleteMany({'salary':5000})
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+db.employee.find()
+{
+  _id: ObjectId('6a38b02daa06a5ff74eae67e'),
+  emp_id: 1,
+  emp_name: 'ad',
+  emp_designation: 'ds'
+}
+{
+  _id: ObjectId('6a38b1c5aa06a5ff74eae67f'),
+  dob: 25,
+  emp_age: '28',
+  emp_exp: '5',
+  emp_salary: 5000
+}
+{
+  _id: ObjectId('6a38b366aa06a5ff74eae680'),
+  name: 'ak',
+  age: 18
+}
+{
+  _id: ObjectId('6a38b366aa06a5ff74eae681'),
+  sub: 'ds',
+  hobby: 'music'
+}
+{
+  _id: ObjectId('6a38b543aa06a5ff74eae683'),
+  skill: 'typing',
+  score: 18
+}
+{
+  _id: ObjectId('6a38b543aa06a5ff74eae684'),
+  salary: '3000',
+  dept: 'ai'
+}
+db.employee.updateOne({'sub':'ds'},{$set:{'hobby':null}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.employee.find()
+{
+  _id: ObjectId('6a38b02daa06a5ff74eae67e'),
+  emp_id: 1,
+  emp_name: 'ad',
+  emp_designation: 'ds'
+}
+{
+  _id: ObjectId('6a38b1c5aa06a5ff74eae67f'),
+  dob: 25,
+  emp_age: '28',
+  emp_exp: '5',
+  emp_salary: 5000
+}
+{
+  _id: ObjectId('6a38b366aa06a5ff74eae680'),
+  name: 'ak',
+  age: 18
+}
+{
+  _id: ObjectId('6a38b366aa06a5ff74eae681'),
+  sub: 'ds',
+  hobby: null
+}
+{
+  _id: ObjectId('6a38b543aa06a5ff74eae683'),
+  skill: 'typing',
+  score: 18
+}
+{
+  _id: ObjectId('6a38b543aa06a5ff74eae684'),
+  salary: '3000',
+  dept: 'ai'
+}
+db.employee.find()
+{
+  _id: ObjectId('6a38b02daa06a5ff74eae67e'),
+  emp_id: 1,
+  emp_name: 'ad',
+  emp_designation: 'ds'
+}
+{
+  _id: ObjectId('6a38b1c5aa06a5ff74eae67f'),
+  dob: 25,
+  emp_age: '28',
+  emp_exp: '5',
+  emp_salary: 5000
+}
+{
+  _id: ObjectId('6a38b366aa06a5ff74eae680'),
+  name: 'ak',
+  age: 18
+}
+{
+  _id: ObjectId('6a38b366aa06a5ff74eae681'),
+  sub: 'ds',
+  hobby: null
+}
+{
+  _id: ObjectId('6a38b543aa06a5ff74eae683'),
+  skill: 'typing',
+  score: 18
+}
+{
+  _id: ObjectId('6a38b543aa06a5ff74eae684'),
+  salary: '3000',
+  dept: 'ai'
+}
+emp
+
+
